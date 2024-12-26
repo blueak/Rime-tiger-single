@@ -62,3 +62,9 @@ patch:
 
   # 让【 】可以直接上屏（对应的重复上屏的功能也没了）
   speller/alphabet: ";'zyxwvutsrqponmlkjihgfedcba"
+
+  #更改当前方案托盘内的小图标
+  schema/icon: icon/ch.ico          # 中文图标
+  schema/ascii_icon:  icon/en.ico   # 英文图标
+  schema/full_icon:  icon/full.ico  # 全角图标
+  schema/half_icon:  icon/half.ico  # 半角图标
