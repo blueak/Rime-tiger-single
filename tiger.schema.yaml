@@ -4,7 +4,6 @@ schema:
   dependencies:
     - core2022  #自定义字集工具方案
     - PY_c  # 拼音方案
-    - easy_english # 英文
   description: |
     虎码官方单字
     敲 ` 鍵進入拼音反查
@@ -67,14 +66,12 @@ engine:
     - key_binder
     - speller
     - punctuator
-    - lua_processor@exe_processor #exe启动器
     - selector
     - navigator
     - express_editor #计算
   segmentors:  # 分段
     - ascii_segmentor
     - matcher
-    - affix_segmentor@easy_english #英文相关
     - abc_segmentor
     - punct_segmentor
     - fallback_segmentor

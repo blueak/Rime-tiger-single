@@ -263,19 +263,7 @@ emoji_cn:
   option_name: emoji_cn
   tips: all
 
-# 临时英文
-easy_english:
-  dictionary: easy_english
-  tag: easy_english
-  prefix: "'"
-  tips: 〔En〕
-  enable_completion: true
-  enable_sentence: false
-  initial_quality: -1
-  preedit_format:
-    - "xlit|_| |"
-  comment_format: #去掉编码提示前的~号
-    - "xform/~/ /"
+
 
 menu:
   page_size: 5 #候选数量
