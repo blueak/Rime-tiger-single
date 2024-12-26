@@ -18,7 +18,7 @@ switches: # 0 默认关，1 默认开
     reset: 0
     states: [ 中文, 西文 ]  #中英文状态
   - name: extended_char  #自定义字集
-    reset: 1
+    reset: 0
     states: [ 全字集 , 常用字 ]
   - name: pinyin  #拼音滤镜
     reset: 0
@@ -82,13 +82,10 @@ engine:
     - punct_translator
     - reverse_lookup_translator #拼音反查
     - table_translator
-    - table_translator@easy_english #临时英文
     - history_translator@historyDM # 重复上屏 电脑
     - history_translator@historyDM2 # 重复上屏 电脑2
     - history_translator@historyDM3 # 重复上屏 电脑3
     - history_translator@historySJ # 重复上屏 手机
-    - lua_translator@number_translator # 数字转大写
-    - lua_translator@calculator_translator # 简易计算器
     - lua_translator@shijian2_translator # 高级时间
 
 
@@ -109,10 +106,11 @@ engine:
     - uniquifier #过滤重复
 
 speller:
-  auto_clear: max_length # 3种选择， manual|auto|max_length 空码按下一键确认清屏|空码自动清|达到最长码时后码顶上清屏
+# auto_clear: max_length #个人习惯，关掉自动清来方便中文时打些短单词
+# auto_clear: max_length # 3种选择， manual|auto|max_length 空码按下一键确认清屏|空码自动清|达到最长码时后码顶上清屏
   auto_select: true
   max_code_length: 4
-  alphabet: "[;'zyxwvutsrqponmlkjihgfedcba]"
+  alphabet: "[;'zyxwvutsrqponmlkjihgfedcba]" #在custom里覆盖去掉了方括号码元
   # initials: "abcdefghijklmnopqrstuvwxyz;'"
   auto_select_pattern: ^;\w+ #自动上屏规则  对 [;] 引导的编码实行候选唯一自动上屏
   # 若要添加四码上屏功能，在  ^;\w+ 后面 加上  |^\w{4}$  即可
@@ -149,6 +147,7 @@ reverse_lookup:
 key_binder:
   #  import_preset: default
   bindings:
+    - { when: has_menu, accept: KP_Enter, send: Return }  #小键盘回车字母上屏
     #- { when: composing, accept: Return, send: Escape } # 回车清屏编码
     #- { accept: space, send: space, when: has_menu } # 有候选时空格上屏首选
     #- { accept: space, send: Escape, when: composing } # 无候选(空码）时空格清屏编码
@@ -157,8 +156,8 @@ key_binder:
     - { when: composing, accept: Tab, send: Escape } # tab清屏
     - { when: has_menu, accept: minus, send: Page_Up } # - 向后翻页
     - { when: has_menu, accept: equal, send: Page_Down } # = 向前翻页
-    # - { when: composing, accept: bracketleft, send: Page_Up } # [ 后翻
-    # - { when: composing, accept: bracketright, send: Page_Down } # ] 前翻
+    - { when: composing, accept: bracketleft, send: Page_Up } # [ 后翻
+    - { when: composing, accept: bracketright, send: Page_Down } # ] 前翻
     - { accept: "Control+o", toggle: simplification, when: composing }  # 简繁开关
     # - { accept: "Control+Shift+O", toggle: fanjian, when: composing }  # 繁简开关
     - { accept: "Control+p", toggle: pinyin, when: composing }  # PC 拼音开关
@@ -189,8 +188,6 @@ recognizer:
     punct: "^/([0-9]0?|[A-Za-z]+)$"
     # uppercase: "" #中文状态大写锁定直接上屏
     reverse_lookup: "^`[a-z]*'?$"
-    easy_english: "^'[A-Z|a-z]*`?$"
-    expression: "^=.*$"
 
 # menu:
   # page_size: 9 #候选数量
@@ -253,19 +250,7 @@ emoji_cn:
   option_name: emoji_cn
   tips: all
 
-# 临时英文
-easy_english:
-  dictionary: easy_english
-  tag: easy_english
-  prefix: "'"
-  tips: 〔En〕
-  enable_completion: true
-  enable_sentence: false
-  initial_quality: -1
-  preedit_format:
-    - "xlit|_| |"
-  comment_format: #去掉编码提示前的~号
-    - "xform/~/ /"
+
 
 # 拆分滤镜
 chaifen:

@@ -1,4 +1,4 @@
-patch: 
+patch:     #小鹤双拼反查
   speller/algebra:
     - erase/^xx$/
     - derive/^([jqxy])u$/$1v/
