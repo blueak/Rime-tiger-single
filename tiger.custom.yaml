@@ -61,7 +61,9 @@ patch:
   # 也可自己把 （ 替换成别的，比如 'xform/（/〔/'
 
   # 让【 】可以直接上屏（对应的重复上屏的功能也没了）
-  speller/alphabet: ";'zyxwvutsrqponmlkjihgfedcba"
+  #将 / 加入码元,方便英文标点下引导快符,写md等好用
+  speller/alphabet: ";'zyxwvutsrqponmlkjihgfedcba/"
+
 
   #更改当前方案托盘内的小图标
   schema/icon: icon/ch.ico          # 中文图标
